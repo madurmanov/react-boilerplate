@@ -29,11 +29,17 @@ module.exports = {
     publicPath: '/',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js?/,
         include: SRC_DIR,
         loader: 'babel-loader',
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
       },
     ],
   },
