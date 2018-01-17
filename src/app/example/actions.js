@@ -1,13 +1,12 @@
-import { getExample } from 'src/app/example/selectors';
 import { ACTIONS } from 'src/app/example/constants';
 
 const {
-  TOGGLE_EXAMPLE,
+  SET_REMOVE,
 } = ACTIONS;
 
-export const toggleExample = value => (dispatch, getState) => {
+export const setRemove = value => (dispatch, getState) => {
   dispatch({
-    type: TOGGLE_EXAMPLE,
-    value: !getExample(getState()),
+    type: SET_REMOVE,
+    value,
   });
 };

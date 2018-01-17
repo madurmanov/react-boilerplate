@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 
 import api from 'src/api';
 import reducers from 'src/app/reducers';
-import App from 'src/app/components/App';
+import App from 'src/app/container';
 
 const debug = require('debug')('src:client:index');
 

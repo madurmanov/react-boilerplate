@@ -3,7 +3,7 @@ const debug = require('debug')('src:api:index');
 const api = (method, params) => {
   let apiService = window.APP && window.APP.api;
 
-  if (__LOC__) {
+  if (__DEV__) {
     apiService = require('./data').default;
   }
 

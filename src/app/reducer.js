@@ -1,19 +1,21 @@
 import { ACTIONS } from './constants';
 
 const {
-  SET_REMOVE,
+  INIT,
 } = ACTIONS;
 
 const initial = {
-  remove: false,
+  data: {
+    example: true,
+  },
 };
 
 const reducer = (state = initial, action) => {
   switch (action.type) {
-    case SET_REMOVE:
+    case INIT:
       return {
         ...state,
-        remove: action.value,
+        data: action.value,
       };
     default:
       return state;

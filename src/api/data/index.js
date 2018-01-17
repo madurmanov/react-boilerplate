@@ -1,4 +1,4 @@
-// import example from './example';
+import example from './example';
 
 const debug = require('debug')('src:api:data:index');
 
@@ -10,11 +10,6 @@ const api = {
       }, (Math.random() + 1) * 750);
       return { fail: () => {} };
     };
-
-    const response = {
-      data: [],
-    };
-
     switch (method) {
       case 'example':
         debug('example');

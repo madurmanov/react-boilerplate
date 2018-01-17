@@ -2,16 +2,17 @@ import React, { PureComponent } from 'react';
 
 const debug = require('debug')('src:app:example:components:index');
 
-class Index extends PureComponent {
+class Example extends PureComponent {
   render() {
     const {
       actions,
       example,
+      remove,
     } = this.props;
 
     debug('render');
 
-    const button = !example && <button onClick={actions.toggleExample}>Remove</button>;
+    const button = (!remove && example) && <button onClick={() => { actions.setRemove(!remove) }}>Remove</button>;
 
     return (
       <div>
@@ -22,4 +23,4 @@ class Index extends PureComponent {
   }
 }
 
-export default Index;
+export default Example;
