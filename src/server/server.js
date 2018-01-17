@@ -3,7 +3,7 @@ const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
-const debug = require('debug')('app:server:server');
+const debug = require('debug')('src:server:server');
 
 const app = express();
 const router = express.Router();
