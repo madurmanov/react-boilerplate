@@ -1,4 +1,4 @@
-import prepareActions from 'src/app/utils/namer';
+import prepareActions from 'src/utils/namer';
 
 export const ACTIONS = prepareActions([
   'SET_REMOVE',
