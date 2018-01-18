@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import injectSheet from 'react-jss';
 
-import example from '../example';
-
 const debug = require('debug')('src:app:components:App');
 
 const styles = {
@@ -17,6 +15,7 @@ class App extends PureComponent {
   render() {
     const {
       classes,
+      children,
     } = this.props;
 
     debug('render');
@@ -26,7 +25,7 @@ class App extends PureComponent {
         className={classes.root}
       >
         App
-        <example.container />
+        {children}
       </div>
     );
   }

@@ -16,7 +16,7 @@ class Example extends PureComponent {
 
     return (
       <div>
-        Index
+        Example
         {button}
       </div>
     );

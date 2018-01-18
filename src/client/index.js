@@ -2,21 +2,19 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory} from 'react-router';
+import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 
 import api from 'src/api';
+import routes from 'src/app/routes';
 import reducers from 'src/app/reducers';
-import App from 'src/app/container';
 
 const debug = require('debug')('src:client:index');
 
 const app = (store, history) => (
   <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={App} />
-    </Router>
+    <Router routes={routes(store)} history={history} />
   </Provider>
 );
 
