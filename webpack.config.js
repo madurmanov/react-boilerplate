@@ -59,7 +59,8 @@ module.exports = {
       __DEV__: str(!env.prod),
       __LOC__: str(env.loc),
     }),
-  ].concat(env.prod ? [
+  ]
+  .concat(env.prod ? [
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {

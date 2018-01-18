@@ -1,6 +1,5 @@
-import { browserHistory } from 'react-router';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 
 import api from 'src/api';
@@ -21,23 +20,22 @@ const configureStore = (history, initialState) => {
       }));
   }
 
-  const applyMiddlewares = applyMiddleware(...middlewares);
+  const enhancers = [
+    applyMiddleware(...middlewares)
+  ];
 
-  const devTools = __BROWSER__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-  const composeEnhancers = __DEV__ && devTools ? devTools : compose;
+  const composeEnhancers = process.env.NODE_ENV !== 'production'
+    && typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 
   const store = createStore(
     combineReducers({
-      ...reducers,
-      routing: routerReducer,
+      ...reducers
     }),
     initialState,
-    composeEnhancers(applyMiddlewares),
+    composeEnhancers(...enhancers),
   );
   return store;
 };
 
-const preloadedState = __BROWSER__ ? window.__PRELOADED_STATE__ || {} : {}
-const store = configureStore(browserHistory, preloadedState);
-
-export default store;
+export default configureStore;

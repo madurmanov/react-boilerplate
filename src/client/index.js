@@ -1,12 +1,13 @@
-import { browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { createBrowserHistory } from 'history';
 
 const debug = require('debug')('src:client:index');
 
 const exec = () => {
-  const store = require('src/app/store').default;
+  const preloadedState = __BROWSER__ ? window.__PRELOADED_STATE__ || {} : {};
+  const history = createBrowserHistory();
+  const configureStore = require('src/app/store').default;
+  const store = configureStore(history, preloadedState);
   const root = require('./root').default;
-  const history = syncHistoryWithStore(browserHistory, store);
   debug('root loaded');
   root({ store, history });
 };

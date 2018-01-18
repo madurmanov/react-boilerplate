@@ -1,13 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
+import { Route } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
 
-import routes from 'src/app/routes';
+import App from 'src/app/container';
 
 const app = (store, history) => (
   <Provider store={store}>
-    <Router routes={routes(store)} history={history} />
+    <ConnectedRouter history={history}>
+      <div>
+        <Route path="/" component={App} />
+      </div>
+    </ConnectedRouter>
   </Provider>
 );
 
