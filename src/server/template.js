@@ -12,4 +12,4 @@ const template = () => (`
   </html>
 `);
 
-module.exports = template;
+export default template;

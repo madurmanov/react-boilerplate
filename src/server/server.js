@@ -10,7 +10,7 @@ const router = express.Router();
 const port = 3000;
 const config = require('../../webpack.config.js');
 const compiler = webpack(config);
-const template = require('./template');
+const template = require('./template').default;
 
 app.use(webpackDevMiddleware(compiler, {
   color: true,
