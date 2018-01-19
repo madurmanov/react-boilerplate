@@ -1,8 +1,7 @@
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
-import Index from './components';
+import Index from './components'
 
-const mapStateToProps = state => ({});
+const mapStateToProps = () => ({})
 
-export default connect(mapStateToProps)(Index);
+export default connect(mapStateToProps)(Index)

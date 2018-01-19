@@ -1,14 +1,14 @@
-import { ACTIONS } from './constants';
+import { ACTIONS } from './constants'
 
 const {
   INIT,
-} = ACTIONS;
+} = ACTIONS
 
 const initial = {
   data: {
     example: true,
   },
-};
+}
 
 const reducer = (state = initial, action) => {
   switch (action.type) {
@@ -16,10 +16,10 @@ const reducer = (state = initial, action) => {
       return {
         ...state,
         data: action.value,
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default reducer;
+export default reducer

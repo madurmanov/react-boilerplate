@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux'
 
-import app from './reducer';
+import app from './reducer'
 
 export default asyncReducers => combineReducers({
   app,
   ...asyncReducers,
-});
+})

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "npm run build-dev",
     "start": "DEBUG=src:* node src/server/index.js",
+    "lint": "eslint src/",
     "build": "webpack --config webpack.config.js",
     "build-clean": "rm -rf dist",
     "build-dev": "npm run build-clean && NODE_ENV=development npm run build",
@@ -14,6 +15,8 @@
   "author": "Mikhail Durmanov",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^4.15.0",
+    "eslint-config": "git+ssh://git@github.com/madurmanov/eslint-config.git",
     "express": "^4.16.2",
     "webpack-dev-middleware": "^2.0.4"
   },
@@ -50,5 +53,8 @@
       "transform-object-rest-spread",
       "transform-exponentiation-operator"
     ]
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/eslint-config/index.js"
   }
 }

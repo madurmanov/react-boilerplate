@@ -10,6 +10,6 @@ const template = () => (`
     <script type="text/javascript" src="/dist/app.js"></script>
   </body>
   </html>
-`);
+`)
 
-export default template;
+export default template

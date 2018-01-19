@@ -1,10 +1,10 @@
-const initial = {};
+const initial = {}
 
 const reducer = (state = initial, action) => {
   switch (action.type) {
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default reducer;
+export default reducer

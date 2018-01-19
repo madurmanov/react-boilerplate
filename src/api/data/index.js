@@ -1,23 +1,24 @@
-import example from './example';
+import example from './example'
 
-const debug = require('debug')('src:api:data:index');
+const debug = require('debug')('src:api:data:index')
 
 const api = {
+  // eslint-disable-next-line
   call(method, params = {}, _cb) {
     const cb = val => {
       setTimeout(() => {
-        _cb(val);
-      }, (Math.random() + 1) * 750);
-      return { fail: () => {} };
-    };
+        _cb(val)
+      }, (Math.random() + 1) * 750)
+      return { fail: () => {} }
+    }
     switch (method) {
       case 'example':
-        debug('example');
-        return cb(example);
+        debug('example')
+        return cb(example)
       default:
-        return cb({});
+        return cb({})
     }
-  }
-};
+  },
+}
 
-export default api;
+export default api
