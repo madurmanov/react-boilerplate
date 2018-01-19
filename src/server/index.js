@@ -11,6 +11,7 @@ require('babel-register')({
     'react',
   ],
   plugins: [
+    'react-hot-loader/babel',
     'transform-object-rest-spread',
     'transform-exponentiation-operator',
   ],

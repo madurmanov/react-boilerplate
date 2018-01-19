@@ -1,13 +1,21 @@
 # react-config
 
-## Build
-For build production version execute `npm run build-prod`.
+## Server
+Server available on http://localhost:3000 when start task is run.
+
+## Production
+```
+npm run build
+npm run start-prod
+```
 
 ## Development
-Execute `npm run build-dev` in first window for run webpack and execute `npm run start` in second window for run http server. Application will be available on http://localhost:3000.
+```
+npm run start
+```
 
 ## Debug
-For enable debug in console add `debug=src:*` to localStorage.
+For enable debug in console add `debug=src:*` to localStorage in inspector.
 
 ## License
 **react-config** is released under the MIT License. See the bundled `LICENSE.md` for details.

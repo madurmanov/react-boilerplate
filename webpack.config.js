@@ -1,9 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const SRC_DIR = path.join(__dirname, 'src');
-const DIST_DIR = path.join(__dirname, 'dist');
-
 const str = val => JSON.stringify(val);
 const NODE_ENV = process.env.NODE_ENV || 'local';
 const env = {
@@ -16,23 +13,26 @@ module.exports = {
   devtool: !env.prod ? 'eval' : 'source-map',
   entry: {
     app: !env.loc
-      ? [SRC_DIR + '/index.js']
+      ? [path.join(__dirname, 'src/index.js')]
       : [
         'babel-polyfill',
-        SRC_DIR + '/index.js'
+        'webpack-hot-middleware/client',
+        'webpack/hot/only-dev-server',
+        'react-hot-loader/patch',
+        path.join(__dirname, 'src/index.js')
       ],
   },
   watch: env.dev,
   output: {
     filename: 'app.js',
-    path: DIST_DIR,
-    publicPath: '/',
+    path: path.join(__dirname, 'dist'),
+    publicPath: '/static/',
   },
   module: {
     rules: [
       {
         test: /\.js?/,
-        include: SRC_DIR,
+        include: path.join(__dirname, 'src'),
         loader: 'babel-loader',
       },
       {
@@ -45,7 +45,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      src: SRC_DIR,
+      src: path.join(__dirname, 'src'),
     },
   },
   plugins: [
@@ -60,6 +60,9 @@ module.exports = {
       __LOC__: str(env.loc),
     }),
   ]
+  .concat(env.loc ? [
+    new webpack.HotModuleReplacementPlugin()
+  ] : [])
   .concat(env.prod ? [
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
