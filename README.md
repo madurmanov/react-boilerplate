@@ -1,7 +1,9 @@
 # react-config
 
-## Server
-Server available on http://localhost:3000 when start task is run.
+## Development
+```
+npm run start
+```
 
 ## Production
 ```
@@ -9,10 +11,8 @@ npm run build
 npm run start-prod
 ```
 
-## Development
-```
-npm run start
-```
+## Server
+Server available on http://localhost:3000 when start task is run.
 
 ## Debug
 For enable debug in console add `debug=src:*` to localStorage in inspector.
