@@ -6,18 +6,13 @@ class Example extends PureComponent {
   render() {
     const {
       actions,
-      example,
-      remove,
     } = this.props;
 
     debug('render');
 
-    const button = (!remove && example) && <button onClick={() => { actions.setRemove(!remove) }}>Remove</button>;
-
     return (
       <div>
         Example
-        {button}
       </div>
     );
   }

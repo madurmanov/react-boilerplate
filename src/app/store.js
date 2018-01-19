@@ -1,8 +1,9 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 
 import api from 'src/api';
+import history from 'src/utils/history';
 import reducers from 'src/app/reducers';
 
 const configureStore = (history, initialState) => {
@@ -29,13 +30,20 @@ const configureStore = (history, initialState) => {
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 
   const store = createStore(
-    combineReducers({
-      ...reducers
-    }),
+    reducers(),
     initialState,
     composeEnhancers(...enhancers),
   );
+  store.asyncReducers = {};
   return store;
 };
 
-export default configureStore;
+const preloadedState = __BROWSER__ ? window.__PRELOADED_STATE__ || {} : {};
+const store = configureStore(history, preloadedState);
+
+export const injectAsyncReducer = (name, asyncReducer) => {
+  store.asyncReducers[name] = asyncReducer;
+  store.replaceReducer(reducers(store.asyncReducers));
+};
+
+export default store;
