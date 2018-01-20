@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
+    "precommit": "git diff --cached --name-only | grep -e '\\.js$' | xargs eslint",
     "start": "DEBUG=src:* node src/server/index.js",
     "start-prod": "NODE_ENV=production npm run start",
     "lint": "eslint src",

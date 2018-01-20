@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd .
+[ -f package.json ] && cat package.json | grep -q '"precommit"\s*:'
+if [[ $? -eq 0 ]]; then
+  npm run precommit
+  [ $? -ne 0 ] && exit 1
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+TIMESTAMP=$(date +%s)
+FOLDER=$(dirname $0)
+ROOT="$PWD/$FOLDER"
+
+mv $ROOT/../../.git/hooks $ROOT/../../.git/hooks.$TIMESTAMP
+ln -s $ROOT $ROOT/../../.git/hooks
+chmod +x .git/hooks/*
+
+echo "install complete!"
