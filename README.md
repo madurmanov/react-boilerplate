@@ -1,5 +1,11 @@
 # react-config
 
+## Install
+```
+npm i
+sh bin/hooks/install
+```
+
 ## Development
 ```
 npm run start
