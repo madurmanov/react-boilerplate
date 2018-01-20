@@ -1,13 +1,13 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
 
-const str = val => JSON.stringify(val);
-const NODE_ENV = process.env.NODE_ENV || 'local';
+const str = val => JSON.stringify(val)
+const NODE_ENV = process.env.NODE_ENV || 'local'
 const env = {
   loc: NODE_ENV === 'local',
   dev: NODE_ENV === 'development',
   prod: NODE_ENV === 'production',
-};
+}
 
 module.exports = {
   devtool: !env.prod ? 'eval' : 'source-map',
@@ -19,7 +19,7 @@ module.exports = {
         'webpack-hot-middleware/client',
         'webpack/hot/only-dev-server',
         'react-hot-loader/patch',
-        path.join(__dirname, 'src/index.js')
+        path.join(__dirname, 'src/index.js'),
       ],
   },
   watch: env.dev,
@@ -60,21 +60,21 @@ module.exports = {
       __LOC__: str(env.loc),
     }),
   ]
-  .concat(env.loc ? [
-    new webpack.HotModuleReplacementPlugin()
-  ] : [])
-  .concat(env.prod ? [
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        drop_console: true,
-        warnings: false,
-      },
-    }),
-  ] : []),
+    .concat(env.loc ? [
+      new webpack.HotModuleReplacementPlugin(),
+    ] : [])
+    .concat(env.prod ? [
+      new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
+        compress: {
+          drop_console: true,
+          warnings: false,
+        },
+      }),
+    ] : []),
   context: __dirname,
   node: {
     __filename: true,
     __dirname: true,
   },
-};
+}
