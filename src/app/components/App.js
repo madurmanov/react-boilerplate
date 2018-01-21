@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { Route } from 'react-router-dom'
 import injectSheet from 'react-jss'
 
-import Example from 'src/app/example/route'
+import Example from 'src/app/example'
 
 const debug = require('debug')('src:app:components:App')
 
@@ -17,7 +17,7 @@ class App extends PureComponent {
     return (
       <div>
         App
-        <Route path="/example" component={Example} />
+        <Route path="/example" component={Example.route} />
       </div>
     )
   }
