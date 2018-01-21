@@ -1,12 +1,13 @@
+import thunk from 'redux-thunk'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { routerMiddleware } from 'react-router-redux'
-import thunk from 'redux-thunk'
 
 import api from 'src/api'
-import history from 'src/utils/history'
-import reducers from 'src/app/reducers'
 
-const configureStore = initialState => {
+const debug = require('debug')('src:store:index')
+
+export default (initial, history, reducers) => {
+  debug('create store')
   let middlewares = [
     thunk.withExtraArgument({ api }),
     routerMiddleware(history),
@@ -31,19 +32,8 @@ const configureStore = initialState => {
 
   const store = createStore(
     reducers(),
-    initialState,
+    initial,
     composeEnhancers(...enhancers)
   )
-  store.asyncReducers = {}
   return store
 }
-
-const preloadedState = __BROWSER__ ? window.__PRELOADED_STATE__ || {} : {}
-const store = configureStore(preloadedState)
-
-export const injectAsyncReducer = (name, asyncReducer) => {
-  store.asyncReducers[name] = asyncReducer
-  store.replaceReducer(reducers(store.asyncReducers))
-}
-
-export default store

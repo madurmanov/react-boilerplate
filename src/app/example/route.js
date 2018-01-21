@@ -1,8 +1,9 @@
 import React from 'react'
-import { injectAsyncReducer } from 'src/app/store'
+
+import { store, reducers } from 'src/client/app'
 
 export default () => {
   const component = require('./').default
-  injectAsyncReducer('example', component.reducer)
+  store.replaceReducer(reducers({ example: component.reducer }))
   return <component.container />
 }

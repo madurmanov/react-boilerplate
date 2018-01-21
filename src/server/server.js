@@ -19,6 +19,7 @@ if (process.env.NODE_ENV === 'production') {
     color: true,
     hot: true,
     noInfo: true,
+    historyApiFallback: true,
     publicPath: config.output.publicPath,
   }))
   app.use(webpackHotMiddleware(compiler))

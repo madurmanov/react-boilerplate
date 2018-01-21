@@ -1,7 +1,4 @@
-import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import Example from './components'
 
-import Index from './components'
-
-const mapStateToProps = () => ({})
-
-export default connect(mapStateToProps)(Index)
+export default withRouter(Example)

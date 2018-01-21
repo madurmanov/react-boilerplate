@@ -1,29 +1,35 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import { Route } from 'react-router-dom'
-import { ConnectedRouter } from 'react-router-redux'
-import { AppContainer } from 'react-hot-loader'
+import { combineReducers } from 'redux'
+import { createBrowserHistory } from 'history'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
-import App from 'src/app/container'
+import configureStore from 'src/client/store'
+import reducer from 'src/app/reducer'
 
-const app = (store, history) => (
-  <AppContainer>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <div>
-          <Route path="/" component={App} />
-        </div>
-      </ConnectedRouter>
-    </Provider>
-  </AppContainer>
-)
+const browserHistory = createBrowserHistory()
 
-const root = ({ store, history }) => {
-  render(
-    app(store, history),
-    document.getElementById('app')
-  )
+const debug = require('debug')('src:client:app')
+
+const reducers = pageReducers => combineReducers({
+  app: reducer,
+  routing: routerReducer,
+  ...pageReducers,
+})
+
+const preloadedState = __BROWSER__ ? window.__PRELOADED_STATE__ || {} : {}
+const store = configureStore(preloadedState, browserHistory, reducers)
+const history = syncHistoryWithStore(browserHistory, store)
+
+export default () => {
+  const root = require('./root').default
+  debug('root loaded')
+  root(store, history)
+  if (__LOC__ && module.hot) {
+    module.hot.accept('./root', () => {
+      const nextRoot = require('./root').default
+      debug('next root loaded')
+      nextRoot(store, history)
+    })
+  }
 }
 
-export default root
+export { store, reducers, browserHistory }
