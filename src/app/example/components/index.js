@@ -4,11 +4,15 @@ const debug = require('debug')('src:app:example:components:index')
 
 class Example extends PureComponent {
   render() {
+    const {
+      example,
+    } = this.props
+
     debug('render')
 
     return (
       <div>
-        Example
+        Example: { example.toString() }
       </div>
     )
   }

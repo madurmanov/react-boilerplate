@@ -11,10 +11,6 @@ const styles = {
 }
 
 class App extends PureComponent {
-  componentWillMount() {
-    this.props.actions.init()
-  }
-
   render() {
     debug('render')
 
