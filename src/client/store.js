@@ -4,7 +4,7 @@ import { routerMiddleware } from 'react-router-redux'
 
 import api from 'src/api'
 
-const debug = require('debug')('src:store:index')
+const debug = require('debug')('src:client:store')
 
 export default (initial, history, reducers) => {
   debug('create store')

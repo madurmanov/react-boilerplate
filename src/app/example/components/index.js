@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-const debug = require('debug')('src:app:example:components:index')
+const debug = require('debug')('src:app:example:components')
 
 class Example extends PureComponent {
   render() {

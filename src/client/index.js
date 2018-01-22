@@ -1,4 +1,4 @@
-const debug = require('debug')('src:client:index')
+const debug = require('debug')('src:client')
 
 const exec = () => {
   const app = require('./app').default

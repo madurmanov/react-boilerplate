@@ -1,4 +1,4 @@
-const debug = require('debug')('src:api:index')
+const debug = require('debug')('src:api')
 
 const api = (method, params) => {
   let apiService = window.APP && window.APP.api

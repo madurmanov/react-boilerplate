@@ -1,7 +1,5 @@
 import example from './example'
 
-const debug = require('debug')('src:api:data:index')
-
 const api = {
   // eslint-disable-next-line
   call(method, params = {}, _cb) {
@@ -13,7 +11,6 @@ const api = {
     }
     switch (method) {
       case 'example':
-        debug('example')
         return cb(example)
       default:
         return cb({})
