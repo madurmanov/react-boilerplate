@@ -6,7 +6,7 @@ import { AppContainer } from 'react-hot-loader'
 
 import App from 'src/app/container'
 
-const debug = require('debug')('src:client:root')
+const debug = require('debug')('src:client:appRoot')
 
 const app = (store, history) => {
   return (

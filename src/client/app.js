@@ -20,12 +20,12 @@ const store = configureStore(preloadedState, browserHistory, reducers)
 const history = syncHistoryWithStore(browserHistory, store)
 
 export default () => {
-  const root = require('./root').default
+  const root = require('./appRoot').default
   debug('root loaded')
   root(store, history)
   if (__LOC__ && module.hot) {
-    module.hot.accept('./root', () => {
-      const nextRoot = require('./root').default
+    module.hot.accept('./appRoot', () => {
+      const nextRoot = require('./appRoot').default
       debug('next root loaded')
       nextRoot(store, history)
     })
