@@ -1,12 +1,19 @@
 import example from './example'
 
+const ajax = (cb, response) => {
+  setTimeout(() => {
+    cb({
+      error: false,
+      response,
+    })
+  }, (Math.random() + 1) * 750)
+}
+
 const api = {
   // eslint-disable-next-line
   call(method, params = {}, _cb) {
-    const cb = val => {
-      setTimeout(() => {
-        _cb(val)
-      }, (Math.random() + 1) * 750)
+    const cb = response => {
+      ajax(_cb, response)
       return { fail: () => {} }
     }
     switch (method) {
