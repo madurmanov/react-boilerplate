@@ -1,18 +1,14 @@
 const path = require('path')
 const webpack = require('webpack')
 
-const str = val => JSON.stringify(val)
+const json = value => JSON.stringify(value)
 const NODE_ENV = process.env.NODE_ENV || 'local'
-const env = {
-  loc: NODE_ENV === 'local',
-  dev: NODE_ENV === 'development',
-  prod: NODE_ENV === 'production',
-}
+const DEV = NODE_ENV !== 'production'
 
 module.exports = {
-  devtool: !env.prod ? 'eval' : 'source-map',
+  devtool: DEV ? 'eval' : 'source-map',
   entry: {
-    app: !env.loc
+    app: !DEV
       ? [path.join(__dirname, 'src/index.js')]
       : [
         'babel-polyfill',
@@ -22,7 +18,6 @@ module.exports = {
         path.join(__dirname, 'src/index.js'),
       ],
   },
-  watch: env.dev,
   output: {
     filename: 'app.js',
     path: path.join(__dirname, 'dist'),
@@ -52,18 +47,16 @@ module.exports = {
     new webpack.IgnorePlugin(/\.(test.js|test|md)$/),
     new webpack.DefinePlugin({
       'process.env': {
-        API_HOST: str(process.env.API_HOST),
-        NODE_ENV: str(NODE_ENV),
+        NODE_ENV: json(NODE_ENV),
       },
-      __BROWSER__: str(true),
-      __DEV__: str(!env.prod),
-      __LOC__: str(env.loc),
+      __BROWSER__: json(true),
+      __DEV__: json(DEV),
     }),
   ]
-    .concat(env.loc ? [
+    .concat(DEV ? [
       new webpack.HotModuleReplacementPlugin(),
     ] : [])
-    .concat(env.prod ? [
+    .concat(!DEV ? [
       new webpack.optimize.UglifyJsPlugin({
         sourceMap: true,
         compress: {

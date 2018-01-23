@@ -8,7 +8,8 @@
     "start": "DEBUG=src:* node src/server/index.js",
     "start-prod": "NODE_ENV=production npm run start",
     "lint": "eslint src",
-    "build": "rm -rf dist && NODE_ENV=production webpack --config webpack.config.js"
+    "lint-fix": "eslint --fix src",
+    "build": "NODE_ENV=production webpack --config webpack.config.js"
   },
   "author": "Mikhail Durmanov",
   "license": "MIT",

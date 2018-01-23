@@ -23,7 +23,7 @@ export default () => {
   const root = require('./appRoot').default
   debug('root loaded')
   root(store, history)
-  if (__LOC__ && module.hot) {
+  if (__DEV__ && module.hot) {
     module.hot.accept('./appRoot', () => {
       const nextRoot = require('./appRoot').default
       debug('next root loaded')
