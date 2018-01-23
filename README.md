@@ -20,7 +20,7 @@ npm run start-prod
 Server available on http://localhost:3000 when start task is run.
 
 ## Linter
-Run linter before commit:
+For runing linter before commit:
 ```
 sh bin/hooks/install
 ```
