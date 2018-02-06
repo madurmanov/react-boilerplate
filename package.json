@@ -7,7 +7,7 @@
     "precommit": "git diff --cached --name-only | grep -e '\\.js$' | xargs eslint",
     "lint": "eslint src",
     "lint-fix": "eslint --fix src",
-    "start": "DEBUG=src:* node server/index.js",
+    "start": "DEBUG=* node server/index.js",
     "build": "NODE_ENV=production webpack --config webpack.config.js"
   },
   "repository": {

@@ -5,6 +5,7 @@ import { AppContainer } from 'react-hot-loader'
 
 import api from './api'
 import getStore from './store'
+import { appInit } from './app/actions'
 import getPage from './app/pages'
 import routes from './app/pages/routes'
 import App from './app/container'
@@ -35,6 +36,7 @@ const render = (Wrapper, Page, store) => {
 
 export default () => {
   const { store, reducers } = getStore({ ...routes }, api)
+  store.dispatch(appInit())
   const Page = getPage({ store, reducers })
   render(App, Page, store)
 
