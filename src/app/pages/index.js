@@ -5,9 +5,12 @@ import { connect } from 'react-redux'
 import { getRoute } from 'src/app/selectors'
 import Loading from 'src/app/components/loading'
 
+const debug = require('debug')(`${__dirname}`)
+
 export default ({ store, reducers }) => {
   // eslint-disable-next-line
   const onLoad = (moduleObject, _, { modulePath }) => {
+    debug(`${modulePath} loaded`)
     const route = (moduleObject.constants || {}).STORE_KEY
 
     if (route && moduleObject.reducer) {

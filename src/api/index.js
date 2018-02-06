@@ -1,4 +1,4 @@
-const debug = require('debug')('src:api')
+const debug = require('debug')(`${__dirname}`)
 
 const api = (method, params) => {
   let service = window.APP && window.APP.api

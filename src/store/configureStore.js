@@ -5,9 +5,13 @@ import { connectRoutes } from 'redux-first-router'
 import appReducer from 'src/app/reducer'
 import options from 'src/app/pages/options'
 
+const debug = require('debug')(`${__dirname}`)
+
 const reducers = { app: appReducer }
 
 export default (routes, api, history, preloadedState) => {
+  debug('create store')
+
   const { reducer, middleware, enhancer } = connectRoutes(
     history,
     routes,

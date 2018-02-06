@@ -9,7 +9,10 @@ import getPage from './app/pages'
 import routes from './app/pages/routes'
 import App from './app/container'
 
+const debug = require('debug')(`${__dirname}`)
+
 const render = (Wrapper, Page, store) => {
+  debug('render')
   const root = document.getElementById('app')
   const js = document.getElementById('server-side-state')
   const css = document.getElementById('server-side-styles')
