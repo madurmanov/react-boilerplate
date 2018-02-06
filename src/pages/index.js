@@ -2,15 +2,16 @@ import universal from 'react-universal-component'
 import { combineReducers } from 'redux'
 import { connect } from 'react-redux'
 
-import { getRoute } from 'src/app/selectors'
-import Loading from 'src/app/components/loading'
+import debug from 'src/utils/debug'
+import { getRoute } from 'src/selectors'
+import Loading from 'src/components/loading'
 
-const debug = require('debug')(`${__dirname}`)
+const log = debug(__dirname)
 
 export default ({ store, reducers }) => {
   // eslint-disable-next-line
   const onLoad = (moduleObject, _, { modulePath }) => {
-    debug(`${modulePath} loaded`)
+    log(`${modulePath} loaded`)
     const route = (moduleObject.constants || {}).STORE_KEY
 
     if (route && moduleObject.reducer) {

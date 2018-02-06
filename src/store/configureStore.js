@@ -2,15 +2,16 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { connectRoutes } from 'redux-first-router'
 
-import appReducer from 'src/app/reducer'
-import options from 'src/app/pages/options'
+import debug from 'src/utils/debug'
+import appReducer from 'src/reducer'
+import options from 'src/pages/options'
 
-const debug = require('debug')(`${__dirname}`)
+const log = debug(__dirname)
 
 const reducers = { app: appReducer }
 
 export default (routes, api, history, preloadedState) => {
-  debug('create store')
+  log('create store')
 
   const { reducer, middleware, enhancer } = connectRoutes(
     history,
@@ -47,7 +48,7 @@ export default (routes, api, history, preloadedState) => {
   )
 
   if (__DEV__ && module.hot) {
-    module.hot.accept('src/app/reducer', () => {
+    module.hot.accept('src/reducer', () => {
       reducers.app = appReducer
       const nextResultReducer = combineReducers({ ...reducers })
       store.replaceReducer(nextResultReducer)

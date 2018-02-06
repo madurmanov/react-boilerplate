@@ -25,7 +25,7 @@ sh bin/hooks/install
 ```
 
 ## Debug
-Add `debug=*` to localStorage in inspector for enable console debug.
+Add `debug=app:*` to localStorage in inspector for enable console debug.
 
 ## License
 **react-boilerplate** is released under the MIT License. See the bundled `LICENSE.md` for details.

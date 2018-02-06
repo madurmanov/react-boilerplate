@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 
-const debug = require('debug')(`${__dirname}`)
+const debug = require('debug')('app:server')
 
 const app = express()
 const port = 3000

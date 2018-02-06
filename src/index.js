@@ -1,9 +1,11 @@
+import debug from 'src/utils/debug'
+
 import render from './root'
 
-const debug = require('debug')(`${__dirname}`)
+const log = debug(__dirname)
 
 const exec = () => {
-  debug('app loaded')
+  log('app loaded')
   render()
 }
 

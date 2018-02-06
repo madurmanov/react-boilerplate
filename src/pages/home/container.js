@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
-import { getLocation } from 'src/app/selectors'
+
+import { getLocation } from 'src/selectors'
 
 import * as actions from './actions'
 import * as selectors from './selectors'

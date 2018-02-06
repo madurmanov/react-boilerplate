@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import injectSheet from 'react-jss'
+import debug from 'src/utils/debug'
 
-const debug = require('debug')(`${__dirname}`)
+const log = debug(__dirname)
 
 const styles = {
   root: {},
@@ -13,7 +14,7 @@ class Home extends PureComponent {
       classes,
     } = this.props
 
-    debug('render')
+    log('render')
 
     return (
       <div
