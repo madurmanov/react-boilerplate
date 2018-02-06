@@ -6,9 +6,9 @@ import * as selectors from './selectors'
 
 import Home from './components'
 
-const mapStateToProps = state => ({
+const mapState = state => ({
   ...selectors.getState(state),
   location: getLocation(state),
 })
 
-export default connect(mapStateToProps, actions)(Home)
+export default connect(mapState, actions)(Home)
