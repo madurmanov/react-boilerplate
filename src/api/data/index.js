@@ -12,7 +12,7 @@ const ajax = (cb, response) => {
 const api = {
   // eslint-disable-next-line
   call(method, params = {}, _cb) {
-    const cb = response => {
+    const cb = (response) => {
       ajax(_cb, response)
       return { fail: () => {} }
     }

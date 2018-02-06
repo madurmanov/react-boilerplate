@@ -1,10 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Route } from 'react-router-dom'
 import injectSheet from 'react-jss'
-
-import Example from 'src/app/example'
-
-const debug = require('debug')('src:app:components:App')
 
 const styles = {
   root: {},
@@ -12,12 +7,14 @@ const styles = {
 
 class App extends PureComponent {
   render() {
-    debug('render')
+    const {
+      children,
+    } = this.props
 
     return (
       <div>
         App
-        <Route path="/example" component={Example.route} />
+        {children}
       </div>
     )
   }

@@ -11,9 +11,9 @@ const port = 3000
 const template = require('./template').default
 
 if (process.env.NODE_ENV === 'production') {
-  app.use('/static', express.static(path.join(__dirname, '../../dist')))
+  app.use('/static', express.static(path.join(__dirname, '../dist')))
 } else {
-  const config = require('../../webpack.config.js')
+  const config = require('../webpack.config.js')
   const compiler = webpack(config)
   app.use(webpackDevMiddleware(compiler, {
     color: true,

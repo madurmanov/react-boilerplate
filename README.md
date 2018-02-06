@@ -1,4 +1,4 @@
-# react-config
+# react-boilerplate
 
 ## Install
 ```
@@ -13,7 +13,6 @@ npm run start
 ## Production
 ```
 npm run build
-npm run start-prod
 ```
 
 ## Server
@@ -29,4 +28,4 @@ sh bin/hooks/install
 Add `debug=src:*` to localStorage in inspector for enable console debug.
 
 ## License
-**react-config** is released under the MIT License. See the bundled `LICENSE.md` for details.
+**react-boilerplate** is released under the MIT License. See the bundled `LICENSE.md` for details.
