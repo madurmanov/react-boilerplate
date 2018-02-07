@@ -1,7 +1,7 @@
 import { ACTIONS } from './constants'
 
 const {
-  INIT,
+  SET_SIZES,
 } = ACTIONS
 
 const initial = {
@@ -11,7 +11,7 @@ const initial = {
 
 const reducer = (state = initial, action) => {
   switch (action.type) {
-    case INIT:
+    case SET_SIZES:
       return {
         ...state,
         width: action.width,

@@ -4,7 +4,6 @@ import { getLocation } from 'src/selectors'
 
 import * as actions from './actions'
 import * as selectors from './selectors'
-
 import Index from './components'
 
 const mapState = state => ({

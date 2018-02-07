@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import injectSheet from 'react-jss'
 import Link from 'redux-first-router-link'
+import { throttle } from 'lodash'
 
 import debug from 'src/utils/debug'
 
@@ -15,6 +16,19 @@ const styles = {
 }
 
 class App extends PureComponent {
+  constructor(props) {
+    super(props)
+    this.handleResize = throttle(this.props.updateSizes, 100)
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize)
+  }
+
   render() {
     const {
       classes,

@@ -8,7 +8,7 @@ import debug from 'src/utils/debug'
 import api from './api'
 import getStore from './store'
 import App from './container'
-import { appInit } from './actions'
+import { init } from './actions'
 import getPage from './pages'
 import routes from './pages/routes'
 
@@ -37,7 +37,7 @@ const render = (Wrapper, Page, store) => {
 
 const app = () => {
   const { store, reducers } = getStore({ ...routes }, api)
-  store.dispatch(appInit())
+  store.dispatch(init())
 
   log('page loaded')
   const Page = getPage({ store, reducers })

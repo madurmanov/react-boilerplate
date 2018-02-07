@@ -1,15 +1,19 @@
 import { ACTIONS } from './constants'
 
 const {
-  INIT,
+  SET_SIZES,
 } = ACTIONS
 
-const init = (width, height) => ({
-  type: INIT,
+const setSizes = (width, height) => ({
+  type: SET_SIZES,
   width,
   height,
 })
 
-export const appInit = () => (dispatch) => {
-  return dispatch(init(window.innerWidth, window.innerHeight))
+export const updateSizes = () => (dispatch) => {
+  return dispatch(setSizes(window.innerWidth, window.innerHeight))
+}
+
+export const init = () => (dispatch) => {
+  return dispatch(updateSizes())
 }
