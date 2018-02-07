@@ -5,9 +5,10 @@
   "main": "src/index.js",
   "scripts": {
     "precommit": "git diff --cached --name-only | grep -e '\\.js$' | xargs eslint",
-    "lint": "eslint src",
-    "lint-fix": "eslint --fix src",
+    "lint": "eslint src server",
+    "lint-fix": "eslint --fix src server",
     "start": "DEBUG=app:* node server/index.js",
+    "start-ssr": "SSR=true npm start",
     "build": "NODE_ENV=production webpack --config webpack.config.js"
   },
   "repository": {
@@ -24,6 +25,7 @@
     "babel-preset-madurmanov": "github:madurmanov/babel-preset",
     "babel-register": "6.26.0",
     "babel-runtime": "6.26.0",
+    "csso": "3.5.0",
     "debug": "3.1.0",
     "file-loader": "1.1.6",
     "history": "4.7.2",
@@ -39,7 +41,7 @@
     "react-redux": "5.0.6",
     "react-universal-component": "2.8.2",
     "redux": "3.7.2",
-    "redux-first-router": "0.0.16-next",
+    "redux-first-router": "1.9.19",
     "redux-first-router-link": "1.4.2",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.2.0",

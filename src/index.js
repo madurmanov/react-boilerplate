@@ -7,10 +7,10 @@ import debug from 'src/utils/debug'
 
 import api from './api'
 import getStore from './store'
+import App from './container'
 import { appInit } from './actions'
 import getPage from './pages'
 import routes from './pages/routes'
-import App from './container'
 
 const log = debug(__dirname)
 
@@ -18,7 +18,7 @@ const render = (Wrapper, Page, store) => {
   const root = document.getElementById('app')
   const js = document.getElementById('server-side-state')
   const css = document.getElementById('server-side-styles')
-  const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate
+  const renderMethod = __SSR__ ? ReactDOM.hydrate : ReactDOM.render
   renderMethod(
     <AppContainer>
       <Provider store={store}>

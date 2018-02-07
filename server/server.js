@@ -1,14 +1,20 @@
-const path = require('path')
-const express = require('express')
-const webpack = require('webpack')
-const webpackDevMiddleware = require('webpack-dev-middleware')
-const webpackHotMiddleware = require('webpack-hot-middleware')
+import path from 'path'
+import express from 'express'
+import webpack from 'webpack'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
+
+import { render } from './render'
+
+const SSR = process.env.SSR === 'true'
 
 const debug = require('debug')('app:server')
 
+const html = render(SSR)
+const handler = (req, res) => { res.send(html) }
+
 const app = express()
 const port = 3000
-const template = require('./template').default
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/', express.static(path.join(__dirname, '../dist')))
@@ -19,13 +25,12 @@ if (process.env.NODE_ENV === 'production') {
     color: true,
     hot: true,
     noInfo: true,
-    historyApiFallback: true,
     publicPath: config.output.publicPath,
   }))
   app.use(webpackHotMiddleware(compiler))
 }
 
-app.use((req, res) => { res.send(template()) })
+app.use(handler)
 
 app.listen(port, (error) => {
   if (error) {

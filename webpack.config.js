@@ -4,6 +4,7 @@ const MinifyPlugin = require('babel-minify-webpack-plugin')
 
 const json = value => JSON.stringify(value)
 const NODE_ENV = process.env.NODE_ENV || 'local'
+const SSR = process.env.SSR === 'true'
 const DEV = NODE_ENV !== 'production'
 
 module.exports = {
@@ -69,6 +70,7 @@ module.exports = {
         NODE_ENV: json(NODE_ENV),
       },
       __BROWSER__: json(true),
+      __SSR__: json(SSR),
       __DEV__: json(DEV),
     }),
   ]
