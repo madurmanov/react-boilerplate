@@ -1,9 +1,0 @@
-#!/bin/bash
-
-STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep ".js\{0,1\}$")
-
-[ "$STAGED_FILES" = "" ] && exit 0
-
-npm run precommit
-
-exit $?

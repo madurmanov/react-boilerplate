@@ -18,12 +18,6 @@ npm run build
 ## Server
 Server available on http://localhost:3000 when start task is run.
 
-## Linter
-For runing linter before commit:
-```
-sh bin/hooks/install
-```
-
 ## Debug
 Add `debug=app:*` to localStorage in inspector for enable console debug.
 
