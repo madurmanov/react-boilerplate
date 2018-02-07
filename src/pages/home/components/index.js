@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react'
 import injectSheet from 'react-jss'
+
 import debug from 'src/utils/debug'
+
+import Layout from 'src/components/layout'
 
 const log = debug(__dirname)
 
@@ -17,11 +20,11 @@ class Home extends PureComponent {
     log('render')
 
     return (
-      <div
+      <Layout
         className={classes.root}
       >
         Home
-      </div>
+      </Layout>
     )
   }
 }
