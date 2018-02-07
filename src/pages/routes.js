@@ -1,6 +1,10 @@
 export default {
-  home: {
+  HOME: {
     path: '/',
     modulePath: 'home',
+  },
+  ABOUT: {
+    path: '/about',
+    modulePath: 'about',
   },
 }

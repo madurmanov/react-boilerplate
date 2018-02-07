@@ -3,15 +3,13 @@ import injectSheet from 'react-jss'
 
 import debug from 'src/utils/debug'
 
-import Layout from 'src/components/layout'
-
 const log = debug(__dirname)
 
 const styles = {
   root: {},
 }
 
-class Home extends PureComponent {
+class Index extends PureComponent {
   render() {
     const {
       classes,
@@ -20,14 +18,14 @@ class Home extends PureComponent {
     log('render')
 
     return (
-      <Layout
+      <div
         className={classes.root}
       >
         Home
-      </Layout>
+      </div>
     )
   }
 }
 
 
-export default injectSheet(styles)(Home)
+export default injectSheet(styles)(Index)

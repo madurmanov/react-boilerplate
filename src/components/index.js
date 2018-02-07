@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 import injectSheet from 'react-jss'
+import Link from 'redux-first-router-link'
+
 import debug from 'src/utils/debug'
 
 const log = debug(__dirname)
@@ -30,7 +32,13 @@ class App extends PureComponent {
         <p>App</p>
         <p>App width: {width}</p>
         <p>App height: {height}</p>
-        {children}
+        <nav>
+          <Link to="/">Home</Link>&nbsp;
+          <Link to="/about">About</Link>
+        </nav>
+        <header>Header</header>
+        <main>{children}</main>
+        <footer>Footer</footer>
       </div>
     )
   }

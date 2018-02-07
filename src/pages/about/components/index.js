@@ -9,12 +9,10 @@ const styles = {
   root: {},
 }
 
-class Layout extends PureComponent {
+class Index extends PureComponent {
   render() {
     const {
       classes,
-      className,
-      children,
     } = this.props
 
     log('render')
@@ -23,12 +21,11 @@ class Layout extends PureComponent {
       <div
         className={classes.root}
       >
-        <header>Header</header>
-        <main className={className}>{children}</main>
-        <footer>Footer</footer>
+        About
       </div>
     )
   }
 }
 
-export default injectSheet(styles)(Layout)
+
+export default injectSheet(styles)(Index)
