@@ -27,9 +27,9 @@ export default (history, preLoadedState) => {
   const enhancers = composeEnhancers(enhancer, middlewares)
   const store = createStore(rootReducer, preLoadedState, enhancers)
 
-  if (module.hot && process.env.NODE_ENV === 'development') {
-    module.hot.accept('./reducers/index', () => {
-      const nextReducers = require('./reducers/index')
+  if (module.hot && __DEV__) {
+    module.hot.accept('./reducers', () => {
+      const nextReducers = require('./reducers')
       const nextRootReducer = combineReducers({
         ...nextReducers,
         location: reducer,

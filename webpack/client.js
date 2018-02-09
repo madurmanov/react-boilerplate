@@ -54,6 +54,7 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify(NODE_ENV),
       },
+      __DEV__: JSON.stringify(DEV),
     }),
 
     DEV && new WriteFilePlugin(), // used so you can see what chunks are produced in dev

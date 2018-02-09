@@ -6,13 +6,13 @@ import { flushChunkNames } from 'react-universal-component/server'
 import flushChunks from 'webpack-flush-chunks'
 import configureStore from './store'
 import template from './template'
-import App from '../src/components/App'
+import App from '../src/container'
 
 const log = debug('app:server')
 
-const createApp = (AppComponent, store) =>
+const createApp = (Wrapper, store) =>
   <Provider store={store}>
-    <AppComponent />
+    <Wrapper />
   </Provider>
 
 export default ({ clientStats }) => async (req, res) => {
