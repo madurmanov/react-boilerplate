@@ -1,0 +1,53 @@
+.switcher {
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+}
+.switcher > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  background-color: #FFF;
+}
+
+.switcher:global(.next) :global(.loading-enter) {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.switcher:global(.next) :global(.loading-enter-active) {
+  transform: translateX(0%);
+  opacity: 1;
+  transition: all 500ms;
+}
+.switcher:global(.next) :global(.loading-leave) {
+  transform: translateX(0%);
+  opacity: 1;
+}
+.switcher:global(.next) :global(.loading-leave-active) {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 500ms;
+}
+
+.switcher:global(.back) :global(.loading-enter) {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.switcher:global(.back) :global(.loading-enter-active) {
+  transform: translateX(0%);
+  opacity: 1;
+  transition: all 500ms;
+}
+.switcher:global(.back) :global(.loading-leave) {
+  transform: translateX(0%);
+  opacity: 1;
+}
+.switcher:global(.back) :global(.loading-leave-active) {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 500ms;
+}

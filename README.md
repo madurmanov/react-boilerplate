@@ -12,7 +12,7 @@ npm run start
 
 ## Production
 ```
-npm run build
+npm run start:prod
 ```
 
 ## Server

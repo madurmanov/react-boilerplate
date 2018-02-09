@@ -1,44 +1,38 @@
+import debug from 'debug'
 import React from 'react'
-import { renderToString } from 'react-dom/server'
+import ReactDOM from 'react-dom/server'
 import { Provider } from 'react-redux'
-import { AppContainer } from 'react-hot-loader'
-import { JssProvider, SheetsRegistry } from 'react-jss'
+import { flushChunkNames } from 'react-universal-component/server'
+import flushChunks from 'webpack-flush-chunks'
+import configureStore from './store'
+import template from './template'
+import App from '../src/components/App'
 
-import createHistory from 'history/createMemoryHistory'
-import csso from 'csso'
+const log = debug('app:server')
 
-import App from '../src/container'
-import routes from '../src/pages/routes'
-import configureStore from '../src/store/configureStore'
-import Loading from '../src/components/loading'
-import tmpl from './template'
+const createApp = (AppComponent, store) =>
+  <Provider store={store}>
+    <AppComponent />
+  </Provider>
 
-const history = createHistory({ initialEntries: ['/'] })
+export default ({ clientStats }) => async (req, res) => {
+  const store = await configureStore(req, res)
+  if (!store) return // no store means redirect was already served
 
-export const render = (ssr) => {
-  let html = ''
-  let styles = ''
-  let state = ''
-  if (ssr) {
-    const { store } = configureStore(routes, {}, history)
+  const app = createApp(App, store)
+  const appString = ReactDOM.renderToString(app)
+  const stateJson = JSON.stringify(store.getState())
+  const chunkNames = flushChunkNames()
+  const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames })
 
-    const sheets = new SheetsRegistry()
-    html = renderToString(
-      <AppContainer>
-        <Provider store={store}>
-          <JssProvider registry={sheets}>
-            <App>
-              <Loading />
-            </App>
-          </JssProvider>
-        </Provider>
-      </AppContainer>
-    )
-    const { css } = csso.minify(sheets.toString())
-    styles = css
-    const stateData = JSON.stringify(store.getState())
-    state = `window.__PRELOADED_STATE__ = ${stateData.replace(/</g, '\\x3c')}`
-  }
+  log('REQUESTED PATH:', req.path)
+  log('CHUNK NAMES', chunkNames)
 
-  return tmpl({ html, styles, state })
+  res.send(template({
+    styles,
+    appString,
+    cssHash,
+    stateJson,
+    js,
+  }))
 }
