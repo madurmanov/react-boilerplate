@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { TransitionGroup, Transition } from 'transition-group'
 import universal from 'react-universal-component'
 
@@ -13,16 +13,26 @@ const UniversalComponent = universal(({ page }) => import(`../pages/${page}`), {
   error: Error,
 })
 
-export default ({ page, direction }) =>
-  <div className={styles.app}>
-    <Header />
-    <TransitionGroup
-      className={`${styles.switcher} ${direction}`}
-      duration={500}
-      prefix="loading"
-    >
-      <Transition key={page}>
-        <UniversalComponent page={page} />
-      </Transition>
-    </TransitionGroup>
-  </div>
+export default class App extends PureComponent {
+  render() {
+    const {
+      page,
+      direction,
+    } = this.props
+
+    return (
+      <div className={styles.app}>
+        <Header />
+        <TransitionGroup
+          className={`${styles.switcher} ${direction}`}
+          duration={500}
+          prefix="loading"
+        >
+          <Transition key={page}>
+            <UniversalComponent page={page} />
+          </Transition>
+        </TransitionGroup>
+      </div>
+    )
+  }
+}

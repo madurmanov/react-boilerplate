@@ -1,0 +1,19 @@
+.list {
+  padding: 0;
+  list-style: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+.item {
+  display: block;
+  width: calc(25% - 20px);
+  margin: 0 10px 20px;
+}
+.link {
+  display: block;
+}
+.image {
+  display: block;
+  width: 100%;
+}

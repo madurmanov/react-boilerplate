@@ -44,6 +44,12 @@ export const page = (state = pageInitial, action) => {
         page: 'gallery',
         direction: 'next',
       }
+    case 'GALLERY_PHOTO':
+      return {
+        ...state,
+        page: 'galleryPhoto',
+        direction: 'next',
+      }
     case NOT_FOUND:
       return {
         ...state,
@@ -68,3 +74,6 @@ export const jwToken = (state = jwTokenInitial, action) => {
       return state
   }
 }
+
+export { default as gallery } from './pages/gallery/reducer'
+export { default as galleryPhoto } from './pages/galleryPhoto/reducer'

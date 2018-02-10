@@ -8,6 +8,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
 import clientConfig from '../webpack/client'
 import serverConfig from '../webpack/server'
+import api from './api'
 
 const DEV = process.env.NODE_ENV !== 'production'
 
@@ -28,6 +29,11 @@ app.use((req, res, next) => {
   }
 
   next()
+})
+
+app.get('/api/*', async (req, res) => {
+  const jwToken = req.headers.authorization.split(' ')[1]
+  res.json(await api(req, jwToken))
 })
 
 if (DEV) {

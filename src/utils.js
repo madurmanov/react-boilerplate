@@ -8,12 +8,13 @@ const jwt = {
 
 export const isServer = typeof window === 'undefined'
 
-export const fetchData = async (path, jwToken) =>
-  fetch(`http://localhost:3000${path}`, {
+export const fetchData = async (url, jwToken) =>
+  fetch(`http://localhost:3000/api${url}`, {
     headers: {
       Accept: 'application/json',
       Authorization: `Bearer ${jwToken || ''}`,
     },
+    cache: 'no-cache',
   }).then(data => data.json())
 
 export const prepareActions = (actions, prefix) =>
