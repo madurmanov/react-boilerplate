@@ -1,6 +1,8 @@
 import React from 'react'
 import { NavLink } from 'redux-first-router-link'
 
+import Logo from '../Images/Logo.svg'
+
 import styles from './styles'
 
 const nav = [
@@ -28,7 +30,10 @@ export default () =>
       className={styles.logo}
       to="/"
     >
-      Logo
+      <img
+        src={Logo}
+        alt="logo"
+      />
     </NavLink>
     <nav className={styles.nav}>
       { nav.map(item =>

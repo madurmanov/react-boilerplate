@@ -56,12 +56,31 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.(png|svg|jpe?g|gif)$/,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader',
+        ],
+      },
     ],
   },
   resolve: {
     extensions: ['.js', '.css'],
   },
   plugins: [
+    new webpack.IgnorePlugin(/\.(test.js|test|md)$/),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
     }),
