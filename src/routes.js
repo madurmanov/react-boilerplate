@@ -1,7 +1,7 @@
 import { fetchData } from './utils'
 import { notFound } from './actions'
 import { setPhotos } from './pages/gallery/actions'
-import { setPhoto } from './pages/galleryPhoto/actions'
+import { setPhoto } from './pages/gallery-photo/actions'
 
 export default {
   HOME: '/',
