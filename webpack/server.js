@@ -81,14 +81,14 @@ module.exports = {
   },
   plugins: [
     new webpack.IgnorePlugin(/\.(test.js|test|md)$/),
-    new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1,
-    }),
-
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(NODE_ENV),
       },
+      __DEV__: JSON.stringify(DEV),
+    }),
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1,
     }),
   ],
 }

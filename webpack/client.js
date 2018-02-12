@@ -103,24 +103,29 @@ module.exports = {
       },
       sourceMap: true,
     }),
-    !DEV && new webpack.HashedModuleIdsPlugin(), // not needed for strategy to work (just good practice)
+    !DEV && new webpack.HashedModuleIdsPlugin(),
 
     new AutoDllPlugin({
       context: path.join(__dirname, '..'),
       filename: '[name].js',
       entry: {
         vendor: [
+          'babel-polyfill',
+          'debug',
+          'fetch-everywhere',
+          'jsdom',
+          'history/createBrowserHistory',
+          'lodash',
           'react',
           'react-dom',
+          'react-hot-loader',
           'react-redux',
           'redux',
-          'history/createBrowserHistory',
-          'transition-group',
+          'redux-devtools-extension/developmentOnly',
           'redux-first-router',
           'redux-first-router-link',
-          'fetch-everywhere',
-          'babel-polyfill',
-          'redux-devtools-extension/developmentOnly',
+          'redux-thunk',
+          'transition-group',
         ],
       },
       plugins: !DEV ? [
@@ -128,6 +133,7 @@ module.exports = {
           'process.env': {
             NODE_ENV: JSON.stringify(NODE_ENV),
           },
+          __DEV__: JSON.stringify(DEV),
         }),
         new webpack.optimize.UglifyJsPlugin({
           compress: {

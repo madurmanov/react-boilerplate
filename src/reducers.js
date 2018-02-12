@@ -3,7 +3,7 @@ import { NOT_FOUND } from 'redux-first-router'
 const appInitial = {}
 const pageInitial = { page: 'home', direction: 'next' }
 const userInitial = { roles: ['member'] }
-const jwTokenInitial = null
+const tokenInitial = null
 
 export const app = (state = appInitial, action) => {
   switch (action.type) {
@@ -42,7 +42,9 @@ export const page = (state = pageInitial, action) => {
       return {
         ...state,
         page: 'gallery',
-        direction: 'next',
+        direction: state.page === 'gallery-photo'
+          ? 'back'
+          : 'next',
       }
     case 'GALLERY_PHOTO':
       return {
@@ -63,7 +65,7 @@ export const page = (state = pageInitial, action) => {
 
 export const user = (state = userInitial) => state
 
-export const jwToken = (state = jwTokenInitial, action) => {
+export const token = (state = tokenInitial, action) => {
   switch (action.type) {
     case 'TOKEN':
       return {

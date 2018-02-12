@@ -11,8 +11,8 @@ const doesRedirect = ({ kind, pathname }, res) => {
 }
 
 export default async (req, res) => {
-  const { jwToken } = req.cookies
-  const preLoadedState = { jwToken }
+  const { token } = req.cookies
+  const preLoadedState = { token }
 
   const history = createHistory({ initialEntries: [req.path] })
   const { store, thunk } = configureStore(history, preLoadedState)

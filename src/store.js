@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
+import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import { connectRoutes } from 'redux-first-router'
 
@@ -23,8 +24,11 @@ export default (history, preLoadedState) => {
   )
 
   const rootReducer = combineReducers({ ...reducers, location: reducer })
-  const middlewares = applyMiddleware(middleware)
-  const enhancers = composeEnhancers(enhancer, middlewares)
+  const middlewares = [
+    thunkMiddleware,
+    middleware,
+  ]
+  const enhancers = composeEnhancers(enhancer, applyMiddleware(...middlewares))
   const store = createStore(rootReducer, preLoadedState, enhancers)
 
   if (module.hot && __DEV__) {

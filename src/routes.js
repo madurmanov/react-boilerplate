@@ -10,9 +10,9 @@ export default {
     path: '/gallery',
     thunk: async (dispatch, getState) => {
       const {
-        jwToken,
+        token,
       } = getState()
-      const gallery = await fetchData('/gallery', jwToken)
+      const gallery = await fetchData('/gallery', token)
       dispatch(setPhotos(gallery))
     },
   },
@@ -20,10 +20,10 @@ export default {
     path: '/gallery/:photo',
     thunk: async (dispatch, getState) => {
       const {
-        jwToken,
+        token,
         location: { payload: { photo } },
       } = getState()
-      const gallery = await fetchData('/gallery', jwToken)
+      const gallery = await fetchData('/gallery', token)
       const galleryPhoto = gallery[photo - 1]
       if (!galleryPhoto) dispatch(notFound())
       else dispatch(setPhoto(galleryPhoto))

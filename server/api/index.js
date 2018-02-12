@@ -3,11 +3,11 @@ const fakeDelay = (ms = (Math.random() * 1000)) =>
 
 const photos = new Array(12)
   .fill(0)
-  .map(() => 'https://yandex.ru/images/today')
+  .map(() => '/local/images/image.jpg')
 
-export default async (req, jwToken) => {
+export default async (req, token) => {
   await fakeDelay()
-  if (!jwToken) return []
+  if (!token) return []
   switch (req.url) {
     case '/api/gallery':
       return photos

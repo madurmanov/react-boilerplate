@@ -1,4 +1,5 @@
 import 'babel-polyfill'
+import path from 'path'
 import debug from 'debug'
 import express from 'express'
 import cookieParser from 'cookie-parser'
@@ -6,35 +7,42 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
+import { JSDOM } from 'jsdom'
 import clientConfig from '../webpack/client'
 import serverConfig from '../webpack/server'
 import api from './api'
 
+const log = debug('app:server')
 const DEV = process.env.NODE_ENV !== 'production'
 
-const log = debug('app:server')
-const publicPath = clientConfig.output.publicPath // eslint-disable-line
-const outputPath = clientConfig.output.path // eslint-disable-line
+global.document = new JSDOM('<!doctype html><html></html>')
+global.window = document.defaultView
+global.__DEV__ = DEV // eslint-disable-line no-underscore-dangle
+
+const publicPath = clientConfig.output.publicPath // eslint-disable-line prefer-destructuring
+const outputPath = clientConfig.output.path // eslint-disable-line prefer-destructuring
 const app = express()
 
 app.use(cookieParser())
 
 app.use((req, res, next) => {
-  const cookie = req.cookies.jwToken
-  const jwToken = 'fake'
+  const cookie = req.cookies.token
+  const token = 'fake'
 
-  if (cookie !== jwToken) {
-    res.cookie('jwToken', jwToken, { maxAge: 900000 })
-    req.cookies.jwToken = jwToken
+  if (cookie !== token) {
+    res.cookie('token', token, { maxAge: 900000 })
+    req.cookies.token = token
   }
 
   next()
 })
 
 app.get('/api/*', async (req, res) => {
-  const jwToken = req.headers.authorization.split(' ')[1]
-  res.json(await api(req, jwToken))
+  const token = req.headers.authorization.split(' ')[1]
+  res.json(await api(req, token))
 })
+
+app.use('/local/', express.static(path.resolve(__dirname, '../local/')))
 
 if (DEV) {
   const multiCompiler = webpack([clientConfig, serverConfig])

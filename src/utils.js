@@ -1,18 +1,18 @@
 import routesMap from './routes'
 
 const fakeUser = { roles: ['admin'] }
-const userFromState = ({ jwToken }) => jwToken === 'real' && fakeUser
+const userFromState = ({ token }) => token === 'real' && fakeUser
 const jwt = {
-  verify: jwToken => jwToken === 'real' && fakeUser,
+  verify: token => token === 'real' && fakeUser,
 }
 
 export const isServer = typeof window === 'undefined'
 
-export const fetchData = async (url, jwToken) =>
+export const fetchData = async (url, token) =>
   fetch(`http://localhost:3000/api${url}`, {
     headers: {
       Accept: 'application/json',
-      Authorization: `Bearer ${jwToken || ''}`,
+      Authorization: `Bearer ${token || ''}`,
     },
     cache: 'no-cache',
   }).then(data => data.json())
@@ -28,7 +28,7 @@ export const isAllowed = (type, state) => {
   if (!role) return true
 
   const user = isServer
-    ? jwt.verify(state.jwToken, process.env.JWT_SECRET)
+    ? jwt.verify(state.token, process.env.JWT_SECRET)
     : userFromState(state)
 
   if (!user) return false
