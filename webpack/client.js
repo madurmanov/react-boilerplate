@@ -113,7 +113,6 @@ module.exports = {
           'babel-polyfill',
           'debug',
           'fetch-everywhere',
-          'jsdom',
           'history/createBrowserHistory',
           'lodash',
           'react',

@@ -1,4 +1,6 @@
+.DS_Store
 build_client
 build_server
 node_modules
 *.log
+package-lock.json

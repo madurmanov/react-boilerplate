@@ -7,17 +7,12 @@ import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
-import { JSDOM } from 'jsdom'
 import clientConfig from '../webpack/client'
 import serverConfig from '../webpack/server'
 import api from './api'
 
 const log = debug('app:server')
 const DEV = process.env.NODE_ENV !== 'production'
-
-global.document = new JSDOM('<!doctype html><html></html>')
-global.window = document.defaultView
-global.__DEV__ = DEV // eslint-disable-line no-underscore-dangle
 
 const publicPath = clientConfig.output.publicPath // eslint-disable-line prefer-destructuring
 const outputPath = clientConfig.output.path // eslint-disable-line prefer-destructuring
