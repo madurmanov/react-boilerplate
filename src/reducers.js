@@ -1,9 +1,15 @@
-import { NOT_FOUND } from 'redux-first-router'
+import { PAGES } from './constants'
+
+const {
+  HOME,
+  ABOUT,
+  GALLERY,
+  GALLERY_PHOTO,
+  NOT_FOUND,
+} = PAGES
 
 const appInitial = {}
 const pageInitial = { page: 'home', direction: 'next' }
-const userInitial = { roles: ['member'] }
-const tokenInitial = null
 
 export const app = (state = appInitial, action) => {
   switch (action.type) {
@@ -14,31 +20,19 @@ export const app = (state = appInitial, action) => {
 
 export const page = (state = pageInitial, action) => {
   switch (action.type) {
-    case 'HOME':
+    case HOME:
       return {
         ...state,
         page: 'home',
         direction: 'back',
       }
-    case 'LOGIN':
-      return {
-        ...state,
-        page: 'about',
-        direction: 'back',
-      }
-    case 'ADMIN':
+    case ABOUT:
       return {
         ...state,
         page: 'about',
         direction: 'next',
       }
-    case 'ABOUT':
-      return {
-        ...state,
-        page: 'about',
-        direction: 'next',
-      }
-    case 'GALLERY':
+    case GALLERY:
       return {
         ...state,
         page: 'gallery',
@@ -46,7 +40,7 @@ export const page = (state = pageInitial, action) => {
           ? 'back'
           : 'next',
       }
-    case 'GALLERY_PHOTO':
+    case GALLERY_PHOTO:
       return {
         ...state,
         page: 'gallery-photo',
@@ -57,20 +51,6 @@ export const page = (state = pageInitial, action) => {
         ...state,
         page: 'error404',
         direction: 'back',
-      }
-    default:
-      return state
-  }
-}
-
-export const user = (state = userInitial) => state
-
-export const token = (state = tokenInitial, action) => {
-  switch (action.type) {
-    case 'TOKEN':
-      return {
-        ...state,
-        ...action.payload,
       }
     default:
       return state

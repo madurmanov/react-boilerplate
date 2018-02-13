@@ -11,11 +11,8 @@ const doesRedirect = ({ kind, pathname }, res) => {
 }
 
 export default async (req, res) => {
-  const { token } = req.cookies
-  const preLoadedState = { token }
-
   const history = createHistory({ initialEntries: [req.path] })
-  const { store, thunk } = configureStore(history, preLoadedState)
+  const { store, thunk } = configureStore(history, {})
 
   let { location } = store.getState()
   if (doesRedirect(location, res)) return false

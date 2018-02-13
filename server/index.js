@@ -2,7 +2,7 @@ import 'babel-polyfill'
 import path from 'path'
 import debug from 'debug'
 import express from 'express'
-import cookieParser from 'cookie-parser'
+import bodyParser from 'body-parser'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
@@ -18,23 +18,10 @@ const publicPath = clientConfig.output.publicPath // eslint-disable-line prefer-
 const outputPath = clientConfig.output.path // eslint-disable-line prefer-destructuring
 const app = express()
 
-app.use(cookieParser())
+app.use(bodyParser.json())
 
-app.use((req, res, next) => {
-  const cookie = req.cookies.token
-  const token = 'fake'
-
-  if (cookie !== token) {
-    res.cookie('token', token, { maxAge: 900000 })
-    req.cookies.token = token
-  }
-
-  next()
-})
-
-app.get('/api/*', async (req, res) => {
-  const token = req.headers.authorization.split(' ')[1]
-  res.json(await api(req, token))
+app.post('/api/*', async (req, res) => {
+  res.json(await api(req.url, req.body))
 })
 
 app.use('/local/', express.static(path.resolve(__dirname, '../local/')))

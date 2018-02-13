@@ -5,12 +5,17 @@ const photos = new Array(12)
   .fill(0)
   .map(() => '/local/images/image.jpg')
 
-export default async (req, token) => {
+const response = data => ({
+  error: '',
+  response: data,
+})
+
+// eslint-disable-next-line no-unused-vars
+export default async (url, params = {}) => {
   await fakeDelay()
-  if (!token) return []
-  switch (req.url) {
+  switch (url) {
     case '/api/gallery':
-      return photos
+      return response(photos)
     default:
       return []
   }

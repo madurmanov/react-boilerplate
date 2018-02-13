@@ -25,7 +25,6 @@
   "license": "MIT",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "cookie-parser": "^1.4.3",
     "debug": "^3.1.0",
     "express": "^4.16.2",
     "fetch-everywhere": "^1.0.5",
@@ -41,7 +40,6 @@
     "redux-first-router": "^1.9.19",
     "redux-first-router-link": "^1.4.2",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1",
     "transition-group": "^0.0.2",
     "webpack-flush-chunks": "^1.1.22"
   },

@@ -42,9 +42,6 @@
 .navItem:focus {
   text-decoration: underline;
 }
-.navItem:nth-last-child(2) {
-  margin-left: auto;
-}
 .navItem:not(:last-child) {
   margin-right: 10px;
 }

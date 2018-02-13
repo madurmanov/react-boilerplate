@@ -14,14 +14,6 @@ const nav = [
     to: '/gallery',
     name: 'Gallery',
   },
-  {
-    to: '/admin',
-    name: 'Admin',
-  },
-  {
-    to: '/login',
-    name: 'Login',
-  },
 ]
 
 export default () =>
