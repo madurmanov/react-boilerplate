@@ -14,13 +14,13 @@ const UniversalComponent = universal(({ page }) =>
   error: Error,
 })
 
-class App extends PureComponent {
+class Index extends PureComponent {
   render() {
+    log('render')
+
     const {
       page,
     } = this.props
-
-    log('render')
 
     return (
       <Fragment>
@@ -31,4 +31,4 @@ class App extends PureComponent {
   }
 }
 
-export default App
+export default Index

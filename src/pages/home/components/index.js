@@ -38,6 +38,8 @@ class Index extends PureComponent {
   }
 
   render() {
+    log('render')
+
     const {
       name,
       appName,
@@ -47,8 +49,6 @@ class Index extends PureComponent {
       value,
       seconds,
     } = this.state
-
-    log('render')
 
     return (
       <Fragment>
