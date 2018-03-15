@@ -7,7 +7,7 @@
     "start": "npm run clean && cross-env DEBUG=app:* NODE_ENV=development babel-watch server/index.js",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --config webpack.config.js",
     "clean": "rimraf build",
-    "precommit": "git diff --cached --name-only | grep -e '\\.js$' | xargs eslint",
+    "precommit": "git diff --cached --name-only | grep -e '^\\(src\\|server\\).*\\.js$' | xargs eslint",
     "lint": "eslint src server",
     "lint:fix": "eslint --fix src server",
     "format": "prettier --single-quote --semi=false --write '{src,server}/**/*.js' && npm run lint"
