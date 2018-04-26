@@ -1,5 +1,6 @@
 import 'babel-polyfill'
 import debug from 'debug'
+import path from 'path'
 import express from 'express'
 import bodyParser from 'body-parser'
 import webpack from 'webpack'
@@ -20,6 +21,8 @@ app.use(bodyParser.json())
 app.post('/api/*', async (req, res) => {
   res.json(await api(req.url, req.body))
 })
+
+app.use('/local/', express.static(path.resolve(__dirname, '../local/')))
 
 app.use(webpackDevMiddleware(compiler, { publicPath }))
 app.use(webpackHotMiddleware(compiler))
