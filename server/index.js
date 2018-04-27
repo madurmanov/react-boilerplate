@@ -22,7 +22,7 @@ app.post('/api/*', async (req, res) => {
   res.json(await api(req.url, req.body))
 })
 
-app.use('/local/', express.static(path.resolve(__dirname, '../local/')))
+app.use('/public/', express.static(path.resolve(__dirname, '../public/')))
 
 app.use(webpackDevMiddleware(compiler, { publicPath }))
 app.use(webpackHotMiddleware(compiler))

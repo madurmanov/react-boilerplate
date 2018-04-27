@@ -7,9 +7,9 @@ export default () => `
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>react-boilerplate-client-only</title>
-  <link rel="shortcut icon" type="image/png" href="/local/favicon.png" sizes="180x180">
-  <link rel="apple-touch-icon" type="image/png" href="/local/favicon.png" sizes="180x180">
-  <link rel="stylesheet" type="text/css" href="/local/styles.css">
+  <link rel="shortcut icon" type="image/png" href="/public/favicon.png" sizes="180x180">
+  <link rel="apple-touch-icon" type="image/png" href="/public/favicon.png" sizes="180x180">
+  <link rel="stylesheet" type="text/css" href="/public/styles.css">
 </head>
 <body>
   <div id="root"></div>
