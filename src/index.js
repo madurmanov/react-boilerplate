@@ -8,7 +8,7 @@ import configureStore from './store'
 import App from './container'
 
 const history = createHistory()
-const { store } = configureStore(history, window.REDUX_STATE)
+const { store } = configureStore(history, window.REDUX_INITIAL_STATE)
 
 const render = (Wrapper) => {
   const root = document.getElementById('root')

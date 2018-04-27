@@ -14,7 +14,7 @@ export default () => `
 <body>
   <div id="root"></div>
   <script type="text/javascript">
-    window.REDUX_STATE = {};
+    window.REDUX_INITIAL_STATE = {};
   </script>
   <script type="text/javascript" src="/static/main.js"></script>
 </body>
