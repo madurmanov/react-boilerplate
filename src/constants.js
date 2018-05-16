@@ -1,14 +1,9 @@
 import { NOT_FOUND } from 'redux-first-router'
-import { prepareActions } from './utils'
+import { prepareConstants } from './utils'
 
-const TYPES = prepareActions([
+const PAGES = prepareConstants([
   'HOME',
-], __dirname)
-TYPES.NOT_FOUND = NOT_FOUND
+], '@@redux-first-router')
+PAGES.NOT_FOUND = NOT_FOUND
 
-const PAGES = {
-  HOME: 'home',
-  ERROR404: 'error404',
-}
-
-export { TYPES, PAGES }
+export { PAGES }

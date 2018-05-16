@@ -1,8 +1,8 @@
-import { TYPES } from './constants'
+import { PAGES } from './constants'
 
 const {
   HOME,
-} = TYPES
+} = PAGES
 
 export default {
   [HOME]: {

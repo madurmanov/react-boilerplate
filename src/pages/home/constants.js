@@ -1,6 +1,6 @@
-import { prepareActions } from 'src/utils'
+import { prepareConstants } from 'src/utils'
 
-export const ACTIONS = prepareActions([
+export const ACTIONS = prepareConstants([
   'CHANGE_NAME',
   'CHANGE_APP_NAME',
 ], __dirname)

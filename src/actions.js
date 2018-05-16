@@ -1,9 +1,9 @@
-import { TYPES } from './constants'
+import { PAGES } from './constants'
 
 const {
   HOME,
   NOT_FOUND,
-} = TYPES
+} = PAGES
 
 export const goTo = (type, payload, query) => ({
   type,

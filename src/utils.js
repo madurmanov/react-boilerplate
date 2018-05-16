@@ -12,10 +12,10 @@ export const fetchData = async (url, params = {}, form) =>
     .then(data => data.json())
     .then(data => data.data)
 
-export const prepareActions = (actions, prefix) =>
-  actions.reduce((acc, action) => ({
+export const prepareConstants = (constants, prefix) =>
+  constants.reduce((acc, constant) => ({
     ...acc,
-    [action]: prefix ? `${prefix}/${action}` : action,
+    [constant]: prefix ? `${prefix}/${constant}` : constant,
   }), {})
 
 export const classJoiner = (...args) => {

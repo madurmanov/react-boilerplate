@@ -1,5 +1,6 @@
 import debug from 'debug'
 import React, { Fragment, PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import universal from 'react-universal-component'
 
 import Error from './Error'
@@ -15,6 +16,10 @@ const UniversalComponent = universal(({ page }) =>
 })
 
 class Index extends PureComponent {
+  static propTypes = {
+    page: PropTypes.string.isRequired,
+  }
+
   render() {
     log('render')
 

@@ -1,24 +1,27 @@
-import { TYPES, PAGES } from './constants'
+import { PAGES } from './constants'
 
 const {
   HOME,
   NOT_FOUND,
-} = TYPES
+} = PAGES
 
-const initial = { page: PAGES.HOME }
+const appInitial = {}
 
-export const app = (state = initial, action) => {
+export const app = (state = appInitial, action) => {
+  switch (action.type) {
+    default:
+      return state
+  }
+}
+
+const pageInitial = 'home'
+
+export const page = (state = pageInitial, action) => {
   switch (action.type) {
     case HOME:
-      return {
-        ...state,
-        page: PAGES.HOME,
-      }
+      return 'home'
     case NOT_FOUND:
-      return {
-        ...state,
-        page: PAGES.ERROR404,
-      }
+      return 'error404'
     default:
       return state
   }
