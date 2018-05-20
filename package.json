@@ -28,6 +28,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^3.1.3",
+    "react-jss": "^8.4.0",
     "react-redux": "^5.0.6",
     "react-universal-component": "^2.8.2",
     "redux": "^3.7.2",
@@ -37,20 +38,25 @@
     "reselect": "^3.0.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.2",
     "babel-loader": "^7.1.2",
+    "babel-plugin-universal-import": "^2.0.0",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-madurmanov": "github:madurmanov/babel-preset",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "babel-watch": "^2.0.6",
     "body-parser": "^1.18.2",
     "cross-env": "^5.1.3",
-    "css-loader": "^0.28.7",
     "debug": "^3.1.0",
     "eslint": "^4.17.0",
-    "eslint-config-madurmanov": "github:madurmanov/eslint-config",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
     "express": "^4.16.2",
-    "extract-css-chunks-webpack-plugin": "^2.0.18",
     "husky": "^0.14.3",
     "prettier": "^1.4.4",
     "redux-devtools-extension": "^2.13.2",
@@ -59,11 +65,5 @@
     "webpack": "^3.10.0",
     "webpack-dev-middleware": "^2.0.4",
     "webpack-hot-middleware": "2.21.0"
-  },
-  "babel": {
-    "presets": "madurmanov"
-  },
-  "eslintConfig": {
-    "extends": "madurmanov"
   }
 }

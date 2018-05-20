@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
 
 const NODE_ENV = process.env.NODE_ENV || 'local'
 const DEV = NODE_ENV !== 'production'
@@ -20,7 +19,7 @@ module.exports = {
     path: path.resolve(__dirname, './build'),
     filename: '[name].js',
     chunkFilename: '[name].js',
-    publicPath: '/static/',
+    publicPath: '/public/',
   },
   module: {
     rules: [
@@ -29,22 +28,10 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
-      {
-        test: /\.css$/,
-        use: ExtractCssChunks.extract({
-          use: {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: DEV ? '[folder]__[local]--[hash:base64:5]' : 'app__[hash:base64:5]',
-            },
-          },
-        }),
-      },
     ],
   },
   resolve: {
-    extensions: ['.js', '.css'],
+    extensions: ['.js'],
     alias: {
       src: path.resolve(__dirname, './src'),
       components: path.resolve(__dirname, './src/components'),
@@ -58,7 +45,6 @@ module.exports = {
       },
       __DEV__: JSON.stringify(DEV),
     }),
-    new ExtractCssChunks('main.css'),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
     }),
