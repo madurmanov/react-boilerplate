@@ -9,7 +9,7 @@ import Loading from './Loading'
 const log = debug('app:Index')
 
 const UniversalComponent = universal(({ page }) =>
-  import(`src/pages/${page}`), {
+  import(`./${page}`), {
   minDelay: 500,
   loading: Loading,
   error: Error,

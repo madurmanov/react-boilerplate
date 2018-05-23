@@ -4,8 +4,8 @@ import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
 import AppContainer from 'react-hot-loader/lib/AppContainer'
 
+import App from 'containers'
 import configureStore from './store'
-import App from './container'
 
 const history = createHistory()
 const { store } = configureStore(history, window.REDUX_INITIAL_STATE)
@@ -26,8 +26,8 @@ const render = (Wrapper) => {
 render(App)
 
 if (module.hot && __DEV__) {
-  module.hot.accept('./container', () => {
-    const NextApp = require('./container').default
+  module.hot.accept('containers', () => {
+    const NextApp = require('containers').default
     render(NextApp)
   })
 }

@@ -2,15 +2,15 @@
   "name": "react-boilerplate-client-only",
   "version": "0.0.1",
   "description": "",
-  "main": "src/index.js",
+  "main": "source/index.js",
   "scripts": {
     "start": "npm run clean && cross-env DEBUG=app:* NODE_ENV=development babel-watch server/index.js",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --config webpack.config.js",
     "clean": "rimraf build",
-    "precommit": "git diff --cached --name-only | grep -e '^\\(src\\|server\\).*\\.js$' | xargs eslint",
-    "lint": "eslint src server",
-    "lint:fix": "eslint --fix src server",
-    "format": "prettier --single-quote --semi=false --write '{src,server}/**/*.js' && npm run lint"
+    "precommit": "git diff --cached --name-only | grep -e '^\\(source\\|server\\).*\\.js$' | xargs eslint",
+    "lint": "eslint source server",
+    "lint:fix": "eslint --fix source server",
+    "format": "prettier --single-quote --semi=false --write '{source,server}/**/*.js' && npm run lint"
   },
   "repository": {
     "type": "git",

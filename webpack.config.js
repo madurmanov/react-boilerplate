@@ -13,7 +13,7 @@ module.exports = {
     'fetch-everywhere',
     DEV && 'webpack-hot-middleware/client',
     DEV && 'react-hot-loader/patch',
-    path.resolve(__dirname, './src/index.js'),
+    path.resolve(__dirname, './source/index.js'),
   ].filter(Boolean),
   output: {
     path: path.resolve(__dirname, './build'),
@@ -33,8 +33,14 @@ module.exports = {
   resolve: {
     extensions: ['.js'],
     alias: {
-      src: path.resolve(__dirname, './src'),
-      components: path.resolve(__dirname, './src/components'),
+      source: path.resolve(__dirname, './source'),
+      actions: path.resolve(__dirname, './source/actions'),
+      components: path.resolve(__dirname, './source/components'),
+      constants: path.resolve(__dirname, './source/constants'),
+      containers: path.resolve(__dirname, './source/containers'),
+      reducers: path.resolve(__dirname, './source/reducers'),
+      selectors: path.resolve(__dirname, './source/selectors'),
+      utils: path.resolve(__dirname, './source/utils'),
     },
   },
   plugins: [

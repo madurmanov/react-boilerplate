@@ -16,6 +16,6 @@ export default () => `
   <script type="text/javascript">
     window.REDUX_INITIAL_STATE = {};
   </script>
-  <script type="text/javascript" src="/static/main.js"></script>
+  <script type="text/javascript" src="/public/main.js"></script>
 </body>
 </html>`
