@@ -6,11 +6,12 @@
   "scripts": {
     "start": "npm run clean && cross-env DEBUG=app:* NODE_ENV=development babel-watch server/index.js",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --config webpack.config.js",
+    "storybook": "start-storybook -p 3001 -c storybook",
     "clean": "rimraf build",
-    "precommit": "git diff --cached --name-only | grep -e '^\\(source\\|server\\).*\\.js$' | xargs eslint",
-    "lint": "eslint source server",
-    "lint:fix": "eslint --fix source server",
-    "format": "prettier --single-quote --semi=false --write '{source,server}/**/*.js' && npm run lint"
+    "precommit": "git diff --cached --name-only | grep -e '^\\(source\\|server\\|storybook\\).*\\.js$' | xargs eslint",
+    "lint": "eslint source server storybook",
+    "lint:fix": "eslint --fix source server storybook",
+    "format": "prettier --single-quote --semi=false --write '{source,server,storybook}/**/*.js' && npm run lint"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "reselect": "^3.0.1"
   },
   "devDependencies": {
+    "@storybook/react": "^3.4.5",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.2",
