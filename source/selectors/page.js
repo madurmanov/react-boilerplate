@@ -1,1 +1,1 @@
-export const getPage = state => state.page
+export const getState = state => state.page

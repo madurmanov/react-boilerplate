@@ -1,10 +1,13 @@
 import { NOT_FOUND } from 'redux-first-router'
-import { prepareConstants } from 'utils'
+import { prepare } from 'utils'
 
 const PREFIX = '@@redux-first-router'
-const PAGES = prepareConstants([
+const PAGES = prepare.constants([
   'HOME',
 ], PREFIX)
 PAGES.NOT_FOUND = NOT_FOUND
 
-export { PREFIX, PAGES }
+export {
+  PAGES,
+  PREFIX,
+}

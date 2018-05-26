@@ -4,14 +4,14 @@ import logger from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import { connectRoutes } from 'redux-first-router'
 
-import routesMap from 'source/routes'
+import routes from 'source/routes'
 import options from 'source/routes/options'
 import * as reducers from 'reducers'
-import * as actionCreators from 'actions'
+import * as actions from 'actions'
 
 const composeEnhancers = (...args) => (
   typeof window !== 'undefined'
-    ? composeWithDevTools({ actionCreators })(...args)
+    ? composeWithDevTools({ actions })(...args)
     : compose(...args)
 )
 
@@ -20,11 +20,14 @@ export default (history, initialState) => {
     reducer, middleware, enhancer,
   } = connectRoutes(
     history,
-    routesMap,
+    routes,
     options,
   )
 
-  const rootReducer = combineReducers({ ...reducers, location: reducer })
+  const rootReducer = combineReducers({
+    ...reducers,
+    location: reducer,
+  })
   const middlewares = [
     __DEV__ && logger,
     thunk,

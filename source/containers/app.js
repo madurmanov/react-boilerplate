@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 
-import * as selectors from 'selectors'
+import { page as pageSelectors } from 'selectors'
 
 import App from 'components'
 
 const mapState = state => ({
-  page: selectors.getPage(state),
+  page: pageSelectors.getState(state),
 })
 
 export default connect(mapState)(App)

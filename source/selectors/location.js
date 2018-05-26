@@ -1,1 +1,1 @@
-export const getLocation = state => state.location
+export const getState = state => state.location

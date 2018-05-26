@@ -1,2 +1,7 @@
-export * from './location'
-export * from './page'
+import * as location from './location'
+import * as page from './page'
+
+export {
+  location,
+  page,
+}

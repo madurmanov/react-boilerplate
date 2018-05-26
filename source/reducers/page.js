@@ -1,4 +1,8 @@
-import { PREFIX, PAGES } from 'constants'
+import { page as pageConstants } from 'constants'
+
+const {
+  PAGES,
+} = pageConstants
 
 const {
   HOME,
@@ -7,12 +11,10 @@ const {
 
 const initial = 'home'
 
-export const page = (state = initial, action) => {
+export default (state = initial, action) => {
   switch (action.type) {
     case HOME:
-      return action.type
-        .replace(`${PREFIX}/`, '')
-        .toLowerCase()
+      return 'home'
     case NOT_FOUND:
       return 'error404'
     default:
