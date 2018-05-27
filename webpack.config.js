@@ -5,7 +5,7 @@ const NODE_ENV = process.env.NODE_ENV || 'local'
 const DEV = NODE_ENV !== 'production'
 
 module.exports = {
-  name: 'client',
+  mode: DEV ? 'development' : 'production',
   target: 'web',
   devtool: DEV ? 'eval' : false,
   entry: [
@@ -17,8 +17,8 @@ module.exports = {
   ].filter(Boolean),
   output: {
     path: path.resolve(__dirname, './build'),
-    filename: '[name].js',
-    chunkFilename: '[name].js',
+    filename: 'app.js',
+    chunkFilename: 'app.js',
     publicPath: '/public/',
   },
   module: {
