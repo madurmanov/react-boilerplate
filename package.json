@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "description": "",
   "main": "source/index.js",
+  "bin": {
+    "core": "./bin/core"
+  },
   "scripts": {
     "start": "npm run clean && cross-env DEBUG=app:* NODE_ENV=development babel-watch server/index.js",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --config webpack.config.js",
-    "storybook": "start-storybook -p 3001 -c storybook",
+    "storybook": "bin/core storybook",
     "clean": "rimraf build",
     "precommit": "git diff --cached --name-only | grep -e '^\\(source\\|server\\|storybook\\).*\\.js$' | xargs eslint",
     "lint": "eslint .",

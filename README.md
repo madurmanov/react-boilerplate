@@ -15,8 +15,10 @@ npm run start
 npm run build
 ```
 
-## Server
-Server available on http://localhost:3000 when start task is run.
+## Storybook
+```
+npm run storybook
+```
 
 ## Debug
 Add `debug=app:*` to localStorage in inspector for enable console debuging.

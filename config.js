@@ -1,6 +1,8 @@
 const path = require('path')
 
 module.exports = {
+  appPort: 3000,
+  storybookPort: 3001,
   api: '/api/',
   assets: '/public/',
   bundle: 'app.js',

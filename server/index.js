@@ -31,10 +31,10 @@ app.use((req, res) => res.send(template({
   bundle: config.bundle,
 })))
 
-app.listen(3000, (error) => {
+app.listen(config.appPort, (error) => {
   if (error) {
     log(`HTTP listening error: ${error}`)
   } else {
-    log('HTTP listening http://localhost:3000/')
+    log(`HTTP listening http://localhost:${config.appPort}/`)
   }
 })
