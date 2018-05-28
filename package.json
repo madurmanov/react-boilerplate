@@ -9,8 +9,8 @@
     "storybook": "start-storybook -p 3001 -c storybook",
     "clean": "rimraf build",
     "precommit": "git diff --cached --name-only | grep -e '^\\(source\\|server\\|storybook\\).*\\.js$' | xargs eslint",
-    "lint": "eslint source server storybook",
-    "lint:fix": "eslint --fix source server storybook",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "format": "prettier --single-quote --semi=false --write '{source,server,storybook}/**/*.js' && npm run lint"
   },
   "repository": {
