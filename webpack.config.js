@@ -1,9 +1,8 @@
-const path = require('path')
 const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const libs = require('./libs.config')
+const config = require('./config')
 
 const NODE_ENV = process.env.NODE_ENV || 'local'
 const DEV = NODE_ENV !== 'production'
@@ -17,13 +16,13 @@ module.exports = {
     'fetch-everywhere',
     DEV && 'webpack-hot-middleware/client',
     DEV && 'react-hot-loader/patch',
-    path.resolve(__dirname, './source/index.js'),
+    `${config.resolve.source}/index.js`,
   ].filter(Boolean),
   output: {
-    path: path.resolve(__dirname, './build'),
-    filename: 'app.js',
-    chunkFilename: 'app.js',
-    publicPath: '/public/',
+    path: config.resolve.build,
+    filename: config.bundle,
+    chunkFilename: config.bundle,
+    publicPath: config.assets,
   },
   module: {
     rules: [
@@ -37,14 +36,14 @@ module.exports = {
   resolve: {
     extensions: ['.js'],
     alias: {
-      source: path.resolve(__dirname, './source'),
-      actions: path.resolve(__dirname, './source/actions'),
-      components: path.resolve(__dirname, './source/components'),
-      constants: path.resolve(__dirname, './source/constants'),
-      containers: path.resolve(__dirname, './source/containers'),
-      reducers: path.resolve(__dirname, './source/reducers'),
-      selectors: path.resolve(__dirname, './source/selectors'),
-      utils: path.resolve(__dirname, './source/utils'),
+      source: config.resolve.source,
+      actions: `${config.resolve.source}/actions`,
+      components: `${config.resolve.source}/components`,
+      constants: `${config.resolve.source}/constants`,
+      containers: `${config.resolve.source}/containers`,
+      reducers: `${config.resolve.source}/reducers`,
+      selectors: `${config.resolve.source}/selectors`,
+      utils: `${config.resolve.source}/utils`,
     },
   },
   plugins: [
@@ -60,9 +59,9 @@ module.exports = {
     }),
 
     DEV && new webpack.HotModuleReplacementPlugin(),
-    DEV && new CopyWebpackPlugin(libs.map(lib => ({
-      from: path.resolve(__dirname, `./node_modules/${lib}`),
-      to: path.resolve(__dirname, './build/libs'),
+    DEV && new CopyWebpackPlugin(config.copy.map(module => ({
+      from: `${config.resolve.modules}/${module}`,
+      to: config.resolve.build,
     }))),
 
     !DEV && new UglifyJsPlugin(),
