@@ -1,5 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+const libs = require('./libs.config')
 
 const NODE_ENV = process.env.NODE_ENV || 'local'
 const DEV = NODE_ENV !== 'production'
@@ -56,9 +60,12 @@ module.exports = {
     }),
 
     DEV && new webpack.HotModuleReplacementPlugin(),
-    DEV && new webpack.NoEmitOnErrorsPlugin(),
+    DEV && new CopyWebpackPlugin(libs.map(lib => ({
+      from: path.resolve(__dirname, `./node_modules/${lib}`),
+      to: path.resolve(__dirname, './build/libs'),
+    }))),
 
-    !DEV && new webpack.optimize.UglifyJsPlugin(),
+    !DEV && new UglifyJsPlugin(),
     !DEV && new webpack.HashedModuleIdsPlugin(),
   ].filter(Boolean),
 }
