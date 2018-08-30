@@ -4,8 +4,9 @@ import getAppName from './getAppName'
 
 const log = debug('app:server:api')
 
-const fakeDelay = (ms = (Math.random() * 1000)) =>
+const fakeDelay = (ms = (Math.random() * 1000)) => (
   new Promise(res => setTimeout(res, ms))
+)
 
 const response = (data) => ({
   error: '',

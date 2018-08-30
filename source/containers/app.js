@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 
-import { page as pageSelectors } from 'selectors'
+import { page as pageSelectors } from '../selectors'
 
-import App from 'components'
+import App from '../components/App'
 
 const mapState = state => ({
   page: pageSelectors.getState(state),

@@ -1,4 +1,4 @@
-import { page as pageConstants } from 'constants'
+import { page as pageConstants } from '../constants'
 
 const {
   PAGES,
@@ -6,17 +6,20 @@ const {
 
 const {
   HOME,
+  ABOUT,
   NOT_FOUND,
 } = PAGES
 
-const initial = 'home'
+const initial = ''
 
 export default (state = initial, action) => {
   switch (action.type) {
     case HOME:
-      return 'home'
+      return 'Home'
+    case ABOUT:
+      return 'About'
     case NOT_FOUND:
-      return 'error404'
+      return 'Error404'
     default:
       return state
   }

@@ -2,7 +2,7 @@ const config = require('../config')
 
 process.argv = process.argv.concat(
   '-p',
-  config.storybookPort,
+  config.ports.storybook,
   '-c',
   'storybook',
 )

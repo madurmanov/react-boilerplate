@@ -1,16 +1,7 @@
-const path = require('path')
-
 module.exports = {
-  appPort: 3000,
-  storybookPort: 3001,
-  api: '/api/',
-  assets: '/public/',
-  bundle: 'app.js',
-  resolve: {
-    build: path.resolve(__dirname, './build'),
-    modules: path.resolve(__dirname, './node_modules'),
-    assets: path.resolve(__dirname, './public'),
-    source: path.resolve(__dirname, './source'),
+  ports: {
+    app: 3000,
+    storybook: 3001,
   },
   copy: [
     'normalize.css/normalize.css',

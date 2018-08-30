@@ -1,10 +1,11 @@
 import FormData from 'form-data'
 
-export const constants = (arr, prefix) =>
+export const constants = (arr, prefix) => (
   arr.reduce((acc, item) => ({
     ...acc,
     [item]: prefix ? `${prefix}/${item}` : item,
   }), {})
+)
 
 export const formData = params => {
   const data = new FormData()

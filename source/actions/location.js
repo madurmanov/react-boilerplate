@@ -1,4 +1,4 @@
-import { page as pageConstants } from 'constants'
+import { page as pageConstants } from '../constants'
 
 const {
   PAGES,

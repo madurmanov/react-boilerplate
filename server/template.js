@@ -1,22 +1,29 @@
 /* eslint-disable max-len */
 
-export default ({ assets, bundle }) => `
+export default ({
+  styles,
+  app,
+  state,
+  chunks,
+  js,
+}) => `
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>react-boilerplate</title>
-  <link rel="shortcut icon" type="image/png" href="${assets}favicon.png" sizes="180x180">
-  <link rel="apple-touch-icon" type="image/png" href="${assets}favicon.png" sizes="180x180">
-  <link rel="stylesheet" type="text/css" href="${assets}normalize.css">
-  <link rel="stylesheet" type="text/css" href="${assets}styles.css">
-</head>
-<body>
-  <div id="root"></div>
-  <script type="text/javascript">
-    window.REDUX_INITIAL_STATE = {};
-  </script>
-  <script type="text/javascript" src="${assets}${bundle}"></script>
-</body>
-</html>`
+  <head>
+    <meta charset="utf-8">
+    <title>react-universal-component-boilerplate</title>
+    <link rel="shortcut icon" type="image/png" href="/static/favicon.png" sizes="180x180">
+    <link rel="apple-touch-icon" type="image/png" href="/static/favicon.png" sizes="180x180">
+    <link rel="stylesheet" href="/static/styles.css">
+    ${styles}
+  </head>
+  <body>
+    <div id="root">${app}</div>
+    <script type="text/javascript">
+      window.REDUX_INITIAL_STATE = ${state};
+    </script>
+    ${chunks}
+    ${js}
+  </body>
+</html>
+`
