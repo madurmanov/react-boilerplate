@@ -8,6 +8,7 @@ import thunkMiddleware from 'redux-thunk'
 import loggerMiddleware from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import { connectRoutes } from 'redux-first-router'
+
 import routes from '../routes'
 import options from '../routes/options'
 import * as reducers from '../reducers'
@@ -19,14 +20,13 @@ const composeEnhancers = (...args) => (
     : compose(...args)
 )
 
-export default (history, initialState) => {
+export default (preLoadedState, initialEntries) => {
   const {
     reducer, middleware, enhancer, thunk,
-  } = connectRoutes(
-    history,
-    routes,
-    options,
-  )
+  } = connectRoutes(routes, {
+    ...options,
+    initialEntries,
+  })
 
   const rootReducer = combineReducers({
     ...reducers,
@@ -38,7 +38,7 @@ export default (history, initialState) => {
     middleware,
   ].filter(Boolean)
   const enhancers = composeEnhancers(enhancer, applyMiddleware(...middlewares))
-  const store = createStore(rootReducer, initialState, enhancers)
+  const store = createStore(rootReducer, preLoadedState, enhancers)
 
   if (module.hot && __DEV__) {
     module.hot.accept('./../reducers', () => {

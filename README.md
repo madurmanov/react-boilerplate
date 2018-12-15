@@ -10,9 +10,9 @@ npm i
 npm run start
 ```
 
-## Build
+## Production
 ```
-npm run build
+npm run start:prod
 ```
 
 ## Storybook
