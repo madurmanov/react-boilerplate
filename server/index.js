@@ -1,11 +1,13 @@
 const debug = require('debug')
 const path = require('path')
+const open = require('open')
 const express = require('express')
 const expressNoFavicon = require('express-no-favicons')
 const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware')
+const config = require('../config')
 const webpackClientConfig = require('../webpack.client.config')
 const webpackServerConfig = require('../webpack.server.config')
 
@@ -14,6 +16,7 @@ const { publicPath } = webpackClientConfig.output
 const outputPath = webpackClientConfig.output.path
 const DEV = process.env.NODE_ENV === 'development'
 const app = express()
+const host = `${config.host}:${config.ports.app}`
 
 app.use(expressNoFavicon())
 
@@ -22,9 +25,9 @@ app.use(publicPath, express.static(path.resolve(__dirname, '../public')))
 let isBuilt = false
 
 const done = () => !isBuilt
-  && app.listen(3000, () => {
+  && app.listen(config.ports.app, () => {
     isBuilt = true
-    log('BUILD COMPLETE -- Listening @ http://localhost:3000')
+    log(`BUILD COMPLETE -- Listening @ ${host}`)
   })
 
 if (DEV) {
@@ -37,7 +40,10 @@ if (DEV) {
   app.use(webpackHotMiddleware(clientCompiler))
   app.use(webpackHotServerMiddleware(compiler))
 
-  devMiddleware.waitUntilValid(done)
+  devMiddleware.waitUntilValid(() => {
+    done()
+    open(host)
+  })
 } else {
   webpack([webpackClientConfig, webpackServerConfig]).run((err, stats) => {
     const clientStats = stats.toJson().children[0]

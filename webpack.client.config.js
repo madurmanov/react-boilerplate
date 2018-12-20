@@ -58,7 +58,7 @@ module.exports = {
     DEV && new webpack.NoEmitOnErrorsPlugin(),
     !DEV && new webpack.optimize.ModuleConcatenationPlugin(),
     !DEV && new webpack.optimize.OccurrenceOrderPlugin(),
-    DEV && new CopyWebpackPlugin(config.copy.map(module => ({
+    new CopyWebpackPlugin(config.copy.map(module => ({
       from: path.resolve(__dirname, `./node_modules/${module}`),
       to: path.resolve(__dirname, './build_client'),
     }))),
